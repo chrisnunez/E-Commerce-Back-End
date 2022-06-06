@@ -13,6 +13,8 @@ Product.init(
     id: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
 
     product_name: {
@@ -27,13 +29,15 @@ Product.init(
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      values: 10,
-      validate: Number,
+      defaultValue: 10,
+      Validate: {
+        isNumeric: true,
+      }
     },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Category', // check to see if it's capital or lowercase.
+        model: 'category', // check to see if it's capital or lowercase.
         key: 'id'
       }, 
     },
